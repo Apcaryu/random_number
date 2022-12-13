@@ -8,6 +8,20 @@ int	*init_tab(int n_gen)
 	return (tab);
 }
 
+char check_presence(int *tab, int gen_done, int num)
+{
+	int idx;
+
+	idx = 0;
+	while (idx < gen_done)
+	{
+		if (tab[idx] == num)
+			return (1);
+		idx++;
+	}
+	return (0);
+}
+
 void	gen_numbers(int *tab, int n_gen)
 {
 	int	tmp;
@@ -17,8 +31,11 @@ void	gen_numbers(int *tab, int n_gen)
 	while (idx < n_gen)
 	{
 		tmp = (rand() % INT_MAX - 1) / 1000;
-		tab[idx] = tmp;
-		idx++;
+		if (!check_presence(tab, idx, tmp))
+		{
+			tab[idx] = tmp;
+			idx++;
+		}
 	}
 }
 
