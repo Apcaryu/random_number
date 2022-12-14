@@ -28,6 +28,7 @@ void	gen_numbers(int *tab, int n_gen)
 	int idx;
 
 	idx = 0;
+	srand(time(0));
 	while (idx < n_gen)
 	{
 		tmp = (rand() % INT_MAX - 1) / 1000;
