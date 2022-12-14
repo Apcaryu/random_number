@@ -1,5 +1,11 @@
 #include "main.h"
 
+static long get_nanos(void) {
+    struct timespec ts;
+    timespec_get(&ts, TIME_UTC);
+    return (long)ts.tv_sec * 1000000000L + ts.tv_nsec;
+}
+
 int	*init_tab(int n_gen)
 {
 	int	*tab;
@@ -28,7 +34,7 @@ void	gen_numbers(int *tab, int n_gen)
 	int idx;
 
 	idx = 0;
-	srand(time(0));
+	srand(get_nanos());
 	while (idx < n_gen)
 	{
 		tmp = (rand() % INT_MAX - 1) / 1000;
